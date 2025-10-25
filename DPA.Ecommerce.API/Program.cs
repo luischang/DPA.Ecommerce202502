@@ -2,6 +2,7 @@ using DPA.Ecommerce.CORE.Core.Interfaces;
 using DPA.Ecommerce.CORE.Core.Services;
 using DPA.Ecommerce.CORE.Infrastructure.Data;
 using DPA.Ecommerce.CORE.Infrastructure.Repositories;
+using DPA.Ecommerce.CORE.Infrastructure.Shared;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,12 @@ builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IFavoriteRepository, FavoriteRepository>();
 builder.Services.AddTransient<IFavoriteService, FavoriteService>();
+
+// register user repository and service
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IUserService, UserService>();
+
+builder.Services.AddSharedInfrastructure(_configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
